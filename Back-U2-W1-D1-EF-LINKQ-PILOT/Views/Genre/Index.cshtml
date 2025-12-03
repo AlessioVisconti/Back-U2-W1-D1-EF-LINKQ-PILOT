@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Back_U2_W1_D1_EF_LINKQ_PILOT.Models.Entity.Genre>
+
+<div class="container mt-5">
+    <h2>Lista Generi</h2>
+
+    <a asp-action="Create" class="btn btn-primary mb-3">Nuovo Genere</a>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Azioni</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var genre in Model)
+            {
+                <tr>
+                    <td>@genre.Name</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@genre.Id" class="btn btn-warning btn-sm">Modifica</a>
+                        <form asp-action="Delete" asp-route-id="@genre.Id" method="post" style="display:inline-block;">
+                            <button type="submit" class="btn btn-danger btn-sm">Elimina</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

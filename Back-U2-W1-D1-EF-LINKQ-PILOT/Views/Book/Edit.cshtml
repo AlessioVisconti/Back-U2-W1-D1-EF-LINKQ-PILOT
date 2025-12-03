@@ -1,13 +1,13 @@
-﻿@model Back_U2_W1_D1_EF_LINKQ_PILOT.ViewModels.CreateBookViewModel
+﻿@model Back_U2_W1_D1_EF_LINKQ_PILOT.ViewModels.EditBookViewModel
 
 @{
-    ViewBag.Title = "Crea nuovo libro";
+    ViewBag.Title = "Modifica libro";
 }
 
-<h2>Crea nuovo libro</h2>
+<h2>Modifica libro</h2>
 
-<form asp-action="Create" method="post">
-    
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
 
     <div class="mb-3">
         <label asp-for="Title" class="form-label"></label>
@@ -33,9 +33,9 @@
 
     <div class="mb-3">
         <label class="form-label">Generi</label>
-        <select asp-for="SelectedGenreIds" asp-items="@(new MultiSelectList(ViewBag.Genres, "Id", "Name"))" multiple class="form-control">
+        <select asp-for="SelectedGenreIds" asp-items="@(new MultiSelectList(Model.AllGenres, "Id", "Name", Model.SelectedGenreIds))" multiple class="form-control">
         </select>
     </div>
 
-    <button type="submit" class="btn btn-success">Crea libro</button>
+    <button type="submit" class="btn btn-primary">Salva modifiche</button>
 </form>

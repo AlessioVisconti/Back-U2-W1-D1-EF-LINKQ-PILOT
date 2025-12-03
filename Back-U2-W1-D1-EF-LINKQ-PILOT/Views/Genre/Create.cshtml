@@ -1,0 +1,16 @@
+﻿@model Back_U2_W1_D1_EF_LINKQ_PILOT.ViewModels.GenreViewModel
+
+<div class="container mt-5">
+    <h2>Nuovo Genere</h2>
+
+    <form asp-action="Create" method="post">
+        <div class="mb-3">
+            <label class="form-label">Nome Genere</label>
+            <input asp-for="Name" class="form-control" placeholder="Inserisci nome" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-success">Crea</button>
+        <a asp-action="Index" class="btn btn-secondary">Annulla</a>
+    </form>
+</div>

@@ -1,0 +1,46 @@
+﻿@model List<Back_U2_W1_D1_EF_LINKQ_PILOT.Models.Entity.Books>
+
+@{
+    ViewBag.Title = "Gestione libri";
+}
+
+<h2>Gestione libri</h2>
+
+<div class="mb-3">
+    <a asp-controller="Book" asp-action="Create" class="btn btn-success">Crea nuovo libro</a>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Titolo</th>
+            <th>Autore</th>
+            <th>Disponibile</th>
+            <th>Generi</th>
+            <th>Azioni</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var book in Model)
+        {
+            <tr>
+                <td>@book.Title</td>
+                <td>@book.Author</td>
+                <td>@(book.Available ? "Sì" : "No")</td>
+                <td>
+                    @if (book.Genres != null && book.Genres.Any())
+                    {
+                        @string.Join(", ", book.Genres.Select(g => g.Name))
+                    }
+                </td>
+                <td>
+                    <a asp-controller="Book" asp-action="Edit" asp-route-id="@book.Id" class="btn btn-primary btn-sm">Modifica</a>
+
+                    <form asp-controller="Book" asp-action="Delete" asp-route-id="@book.Id" method="post" style="display:inline-block" onsubmit="return confirm('Sei sicuro di voler eliminare questo libro?');">
+                        <button type="submit" class="btn btn-danger btn-sm">Elimina</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

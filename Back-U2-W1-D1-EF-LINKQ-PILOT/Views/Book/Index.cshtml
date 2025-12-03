@@ -1,4 +1,71 @@
-﻿@using Back_U2_W1_D1_EF_LINKQ_PILOT.ViewModels
+﻿@using Back_U2_W1_D1_EF_LINKQ_PILOT.Models.Entity
+@model List<Books>
+
+<div class="container py-5" style="min-height: calc(100vh - 200px);">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        @foreach (var book in Model)
+        {
+            <div class="col">
+                <div class="trading-card @(book.Available ? "available" : "unavailable")">
+                    <!-- Bordo decorativo superiore -->
+                    <div class="card-border-top"></div>
+
+                    <!-- Header con badge disponibilità -->
+                    <div class="card-header-badge">
+                        @if (book.Available)
+                        {
+                            <span class="status-badge available-badge">
+                                <i class="bi bi-check-circle-fill"></i> Available
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="status-badge unavailable-badge">
+                                <i class="bi bi-x-circle-fill"></i> Not Available
+                            </span>
+                        }
+                    </div>
+
+                    <!-- Immagine del libro con frame -->
+                    <div class="card-image-container">
+                        <div class="image-frame">
+                            <img src="@book.Cover"
+                                 class="card-image"
+                                 alt="@book.Title">
+                        </div>
+                        <div class="holographic-overlay"></div>
+                    </div>
+
+                    <!-- Info libro -->
+                    <div class="card-info">
+                        <h3 class="book-title">@book.Title</h3>
+
+                        <!-- Generi -->
+                        @if (book.Genres != null && book.Genres.Any())
+                        {
+                            <div class="book-genres mb-2">
+                                @foreach (var genre in book.Genres)
+                                {
+                                    <span class="badge bg-secondary me-1">@genre.Name</span>
+                                }
+                            </div>
+                        }
+
+                        <!-- Stats box autore -->
+                        <div class="stats-box">
+                            <div class="stat-label">AUTHOR</div>
+                            <div class="stat-value">@book.Author</div>
+                        </div>
+                    </div>
+
+                    <!-- Bordo decorativo inferiore -->
+                    <div class="card-border-bottom"></div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+@* @using Back_U2_W1_D1_EF_LINKQ_PILOT.ViewModels
 @model List<BooksViewModel>;
 
 <div class="container py-5" style="min-height: calc(100vh - 200px);">
@@ -53,4 +120,4 @@
             </div>
         }
     </div>
-</div>
+</div> *@

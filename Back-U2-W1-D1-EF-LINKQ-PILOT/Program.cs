@@ -8,7 +8,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 // add service to DI
+builder.Services.AddScoped<GenreService>();
 builder.Services.AddScoped<BookService>();
+builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<BorrowingService>();
 
 
 builder.Services.AddDbContext<ApplicationDbContext>(
